@@ -17,6 +17,7 @@
 package com.eviware.soapui.impl.wsdl;
 
 import com.eviware.soapui.SoapUI;
+import com.eviware.soapui.analytics.SoapUIActions;
 import com.eviware.soapui.autoupdate.SoapUIVersionInfo;
 import com.eviware.soapui.config.InterfaceConfig;
 import com.eviware.soapui.config.MockServiceConfig;
@@ -2017,24 +2018,14 @@ public class WsdlProject extends AbstractTestPropertyHolderWsdlModelItem<Project
             return false;
         }
         String versionWithoutTimeStamp = StringUtils.getSubstringBeforeFirstWhitespace(projectDocument.getSoapuiProject().getSoapuiVersion());
-        return (SoapUIVersionInfo.isNewerThanCurrent(new SoapUIVersionInfo(versionWithoutTimeStamp)));
+        return (SoapUIVersionInfo.currentVersion.isNewerThanCurrent(new SoapUIVersionInfo(versionWithoutTimeStamp)));
     }
 
     public enum ProjectEncryptionStatus {
         NOT_ENCRYPTED, ENCRYPTED_BAD_OR_NO_PASSWORD, ENCRYPTED_GOOD_PASSWORD;
     }
 
-    public boolean isFromReadyApi() {
-        if (StringUtils.hasContent(getConfig().getUpdated())) {
-            return true;
-        }
-        String soapuiVersion = getConfig().getSoapuiVersion();
-        if (StringUtils.hasContent(soapuiVersion)) {
-            SoapUIVersionInfo soapUIVersionInfo = new SoapUIVersionInfo(soapuiVersion);
-            if (SoapUIVersionInfo.isNewerThanCurrent(VERSION_IN_READY_API_PROJECT)) {
-                return VERSION_IN_READY_API_PROJECT.equals(soapUIVersionInfo);
-            }
-        }
-        return false;
+    public boolean isFromReady() {
+        return StringUtils.hasContent(getConfig().getUpdated());
     }
 }

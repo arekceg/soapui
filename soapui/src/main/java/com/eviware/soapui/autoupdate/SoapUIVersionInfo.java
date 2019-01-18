@@ -16,7 +16,6 @@
 
 package com.eviware.soapui.autoupdate;
 
-import com.eviware.soapui.SoapUI;
 import com.eviware.soapui.SoapUICore;
 
 import java.util.Comparator;
@@ -25,7 +24,7 @@ import java.util.Comparator;
  * Created by avdeev on 27.08.2014.
  */
 public class SoapUIVersionInfo implements Comparator<SoapUIVersionInfo> {
-    public static final SoapUIVersionInfo currentVersion = new SoapUIVersionInfo(SoapUI.SOAPUI_VERSION);
+    public static final SoapUIVersionInfo currentVersion = new SoapUIVersionInfo(SoapUICore.SOAPUI_VERSION);
     private int majorVersion;
     private int minorVersion;
     private int middleVersion;
@@ -118,7 +117,7 @@ public class SoapUIVersionInfo implements Comparator<SoapUIVersionInfo> {
         return asString;
     }
 
-    public static boolean isNewerThanCurrent(SoapUIVersionInfo version) {
-        return currentVersion.compare(version, currentVersion) > 0;
+    public boolean isNewerThanCurrent(SoapUIVersionInfo version) {
+        return compare(version, currentVersion) > 0;
     }
 }

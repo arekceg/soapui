@@ -17,7 +17,7 @@
 package com.eviware.soapui.impl;
 
 import com.eviware.soapui.SoapUI;
-import com.eviware.soapui.analytics.Analytics;
+import com.eviware.soapui.SoapUICore;
 import com.eviware.soapui.config.ProjectConfig;
 import com.eviware.soapui.config.SoapuiWorkspaceDocumentConfig;
 import com.eviware.soapui.config.WorkspaceProjectConfig;
@@ -50,6 +50,7 @@ import javax.swing.ImageIcon;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -159,6 +160,7 @@ public class WorkspaceImpl extends AbstractModelItem implements Workspace {
                             wsc.getName(), null);
 
                     projectList.add(project);
+                    ensureProjectsCompatibility(projectList);
                 } catch (Exception e) {
                     UISupport.showErrorMessage(messages.get("FailedToLoadProjectInWorkspace", str) + e.getMessage());
 
@@ -179,41 +181,36 @@ public class WorkspaceImpl extends AbstractModelItem implements Workspace {
     private void ensureProjectsCompatibility(List<Project> projects) {
         List<String> newerProjectsList = new ArrayList<>();
         List<String> readyProjectsList = new ArrayList<>();
-        for (Project project : projects) {
-            if (project instanceof WsdlProject) {
-                if (((WsdlProject) project).isFromReadyApi()) {
-                    ProjectConfig config = ((WsdlProject) project).getProjectDocument().getSoapuiProject();
-                    String version = StringUtils.isNullOrEmpty(config.getUpdated()) ? "" : StringUtils.getSubstringBeforeFirstWhitespace(config.getUpdated());
-                    Analytics.trackAction(IMPORT_PRO_PROJECT, "project_version", StringUtils.hasContent(version) ? version : "UNDEFINED");
-                    readyProjectsList.add(
-                            messages.get(
-                                    "Compatibility.with.ReadyAPI.one.project",
-                                    config.getName(),
-                                    StringUtils.hasContent(version) ? "(" + version + ")" : ""));
-                } else if (((WsdlProject) project).isFromNewerVersion()) {
-                    ProjectConfig config = ((WsdlProject) project).getProjectDocument().getSoapuiProject();
-                    String version = config.getSoapuiVersion();
-                    Analytics.trackAction(IMPORT_PROJECT_FROM_HIGHER_VERSION, "project_version", version);
-                    newerProjectsList.add(
-                            messages.get(
-                                    "Compatibility.with.SoapUI.one.project",
-                                    config.getName(),
-                                    version,
-                                    SoapUI.PRODUCT_NAME));
-                }
-            }
-        }
-        String message = messages.get(
-                "WorkspaceImpl.Compatibility.Text",
-                SoapUI.PRODUCT_NAME,
-                SoapUI.SOAPUI_VERSION);
-        if (!readyProjectsList.isEmpty()) {
-            UISupport.showInfoMessage(String.join("\r\n", readyProjectsList) + message,
-                    messages.get("Compatibility.with.ReadyAPI.Title"));
-        }
+        projects.stream()
+                .filter(project -> project instanceof WsdlProject)
+                .forEach(project -> {
+                    if (((WsdlProject) project).isFromNewerVersion()) {
+                        ProjectConfig config = ((WsdlProject) project).getProjectDocument().getSoapuiProject();
+                        newerProjectsList.add(
+                                MessageFormat.format(
+                                        "The project [{0}] was created in a later version of {2} ({1}).",
+                                        config.getName(),
+                                        StringUtils.getSubstringBeforeFirstWhitespace(config.getUpdated()),
+                                        "SoapUI"));
+                    } else if (((WsdlProject) project).isFromReady()) {
+                        ProjectConfig config = ((WsdlProject) project).getProjectDocument().getSoapuiProject();
+                        readyProjectsList.add(
+                                MessageFormat.format(
+                                        "The project [{0}] was updated in a ReadyAPI",
+                                        config.getName()));
+                    }
+                });
         if (!newerProjectsList.isEmpty()) {
-            UISupport.showInfoMessage(String.join("\r\n", newerProjectsList) + message,
-                    messages.get("Compatibility.with.SoapUI.Title"));
+            UISupport.showInfoMessage(String.join("\r\n", newerProjectsList) +
+                            "\r\nIf you save the project in the current version of SoapUI ("
+                            + SoapUICore.SOAPUI_VERSION + "), it may work incorrectly.",
+                    "Load the project from a later version");
+        }
+        if (!readyProjectsList.isEmpty()) {
+            UISupport.showInfoMessage(String.join("\r\n", readyProjectsList) +
+                            "\r\nIf you save the project in SoapUI ("
+                            + SoapUICore.SOAPUI_VERSION + "), it may work incorrectly.",
+                    "Load the project from ReadyAPI");
         }
     }
 
