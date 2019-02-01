@@ -226,7 +226,7 @@ public class EndpointExplorerCallback {
     }
 
     public void exploreAPIDontShowAgain(boolean newValue) {
-        if (newValue) {
+        if(newValue) {
             Analytics.trackAction(EXPLORE_API_DONT_SHOW_ON_LAUNCH);
         }
         SoapUI.getSettings().setBoolean(SHOW_ENDPOINT_EXPLORER_ON_START, !newValue);
