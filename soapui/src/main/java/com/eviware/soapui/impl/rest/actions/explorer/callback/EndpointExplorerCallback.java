@@ -60,14 +60,7 @@ public class EndpointExplorerCallback {
     private static final String URL_PROPERTY = "url";
     private static final String PAYLOAD_PROPERTY = "payload";
     private static final String HEADERS_PROPERTY = "headers";
-
-    private final WebViewBasedBrowserComponent browserComponent;
-
-    private boolean requestCreated = false;
-
-    public EndpointExplorerCallback(WebViewBasedBrowserComponent browserComponent){
-        this.browserComponent = browserComponent;
-    }
+    private static final String UNKNOWN_HOST_EXCEPTION_RESPONSE_TEXT = "<missing raw response data>";
 
     private static final String UNKNOWN_HOST_EXCEPTION_RESPONSE_TEXT = "<missing raw response data>";
 
@@ -226,7 +219,7 @@ public class EndpointExplorerCallback {
     }
 
     public void exploreAPIDontShowAgain(boolean newValue) {
-        if(newValue) {
+        if (newValue) {
             Analytics.trackAction(EXPLORE_API_DONT_SHOW_ON_LAUNCH);
         }
         SoapUI.getSettings().setBoolean(SHOW_ENDPOINT_EXPLORER_ON_START, !newValue);
