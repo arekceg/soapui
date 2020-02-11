@@ -47,11 +47,8 @@ import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.Insets;
-import java.awt.Point;
-import java.awt.Rectangle;
+
+import java.awt.*;
 import java.awt.dnd.Autoscroll;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
@@ -98,8 +95,9 @@ public class Navigator extends JPanel {
         mainTree.setBorder(null);
         mainTree.getSelectionModel().setSelectionMode(TreeSelectionModel.DISCONTIGUOUS_TREE_SELECTION);
         mainTree.addKeyListener(new TreeKeyListener());
+        mainTree.setBackground(new Color(40,42,54));
         JScrollPane sp = new JScrollPane(mainTree);
-        sp.setBorder(BorderFactory.createEmptyBorder());
+        sp.setBorder(BorderFactory.createLineBorder(new Color(68,71,90)));
         add(sp, BorderLayout.CENTER);
         add(buildToolbar(), BorderLayout.NORTH);
         setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -113,6 +111,8 @@ public class Navigator extends JPanel {
         toggleButton.setSize(10, 12);
         toolbar.addFixed(toggleButton);
         toolbar.addGlue();
+        toolbar.setBackground(new Color(40,42,54));
+        toolbar.setForeground(new Color(248,248,242));
 
         return toolbar;
     }

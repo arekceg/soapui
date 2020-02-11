@@ -26,7 +26,8 @@ import com.eviware.soapui.support.Tools;
 import javax.swing.ImageIcon;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeCellRenderer;
-import java.awt.Component;
+
+import java.awt.*;
 
 /**
  * TreeCellRenderer for SoapUITreeNodes
@@ -77,6 +78,9 @@ public class SoapUITreeNodeRenderer extends DefaultTreeCellRenderer {
             setToolTipText(toolTipText.length() > 0 ? toolTipText : null);
         }
 
+        setBackgroundNonSelectionColor(new Color(40,42,54));
+        setBackgroundSelectionColor(new Color(98,114,164));
+        setForeground(new Color(248,248,242));
         return this;
     }
 }

@@ -411,7 +411,7 @@ public class SoapUI {
             @Override
             public void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                g.setColor(Color.LIGHT_GRAY);
+                g.setColor(new Color(68,71,90));
                 g.drawRect(0, 0, getWidth() - 1, getHeight() - 1);
             }
         };
@@ -466,8 +466,8 @@ public class SoapUI {
         endpointExplorerButtonPanel.setPreferredSize(new Dimension(130, 32));
         endpointExplorerButtonPanel.setMaximumSize(new Dimension(130, 32));
         endpointExplorerButton = new RoundButton(6);
-        endpointExplorerButton.setForeground(Color.WHITE);
-        endpointExplorerButton.setBackground(new Color(52, 137, 209));
+        endpointExplorerButton.setForeground(new Color(40,42,54));
+        endpointExplorerButton.setBackground(new Color(98,114,164));
         endpointExplorerButton.setText("Endpoint Explorer");
         if (UISupport.isMac()) {
             endpointExplorerButton.setOpaque(false);
@@ -516,9 +516,9 @@ public class SoapUI {
             @Override
             public void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                g.setColor(Color.WHITE);
+                g.setColor(new Color (40,42,54));
                 g.fillRect(0, 0, getWidth(), getHeight());
-                g.setColor(Color.LIGHT_GRAY);
+                g.setColor(new Color(68,71,90));
                 g.drawLine(0, getHeight() - 1, getWidth(), getHeight() - 1);
             }
         };
@@ -894,28 +894,29 @@ public class SoapUI {
         }
     }
 
+    private static final Color darkBg = new Color(40,42,54);
     private static void setBackgroundsToWhite() {
-        UIManager.put("Button.background", Color.WHITE);
-        UIManager.put("Panel.background", Color.WHITE);
-        UIManager.put("MenuBar.background", Color.WHITE);
-        UIManager.put("ComboBox.background", Color.WHITE);
-        UIManager.put("TableHeader.background", Color.WHITE);
-        UIManager.put("ToolBar.background", Color.WHITE);
-        UIManager.put("TabbedPane.background", Color.LIGHT_GRAY);
-        UIManager.put("TabbedPane.selected", Color.WHITE);
-        UIManager.put("Label.background", Color.WHITE);
-        UIManager.put("CheckBox.background", Color.WHITE);
-        UIManager.put("Desktop.background", Color.WHITE);
-        UIManager.put("ProgressBar.background", Color.WHITE);
-        UIManager.put("InternalFrame.background", Color.WHITE);
-        UIManager.put("SplitPane.background", Color.WHITE);
-        UIManager.put("ScrollBar.background", Color.WHITE);
-        UIManager.put("Spinner.background", Color.WHITE);
-        UIManager.put("OptionPane.background", Color.WHITE);
-        UIManager.put("ToggleButton.background", Color.WHITE);
-        UIManager.put("Slider.background", Color.WHITE);
-        UIManager.put("RadioButton.background", Color.WHITE);
-        UIManager.put("ScrollPane.background", Color.WHITE);
+        UIManager.put("Button.background", darkBg);
+        UIManager.put("Panel.background", darkBg);
+        UIManager.put("MenuBar.background", darkBg);
+        UIManager.put("ComboBox.background", darkBg);
+        UIManager.put("TableHeader.background", darkBg);
+        UIManager.put("ToolBar.background", darkBg);
+        UIManager.put("TabbedPane.background", darkBg);
+        UIManager.put("TabbedPane.selected", darkBg);
+        UIManager.put("Label.background", darkBg);
+        UIManager.put("CheckBox.background", darkBg);
+        UIManager.put("Desktop.background", darkBg);
+        UIManager.put("ProgressBar.background", darkBg);
+        UIManager.put("InternalFrame.background", darkBg);
+        UIManager.put("SplitPane.background", darkBg);
+        UIManager.put("ScrollBar.background", darkBg);
+        UIManager.put("Spinner.background", darkBg);
+        UIManager.put("OptionPane.background", darkBg);
+        UIManager.put("ToggleButton.background", darkBg);
+        UIManager.put("Slider.background", darkBg);
+        UIManager.put("RadioButton.background", darkBg);
+        UIManager.put("ScrollPane.background", darkBg);
     }
 
     public static void main(String[] args) throws Exception {
@@ -939,7 +940,6 @@ public class SoapUI {
         frame = new JFrame(title);
 
         frame.setIconImages(getFrameIcons());
-
         JPopupMenu.setDefaultLightWeightPopupEnabled(false);
         ToolTipManager.sharedInstance().setLightWeightPopupEnabled(false);
 

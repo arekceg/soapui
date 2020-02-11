@@ -440,7 +440,7 @@ public class StandaloneDesktop extends AbstractSoapUIDesktop {
                 if (!file.exists())
                     file = new File("soapui-background.jpg");
                 if (!file.exists())
-                    file = new File("/soapui-background.png");
+                    file = new File("soapui-background.png");
 
                 if (file.exists()) {
                     img = javax.imageio.ImageIO.read(file);
