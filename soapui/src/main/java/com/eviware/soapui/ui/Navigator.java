@@ -16,6 +16,7 @@
 
 package com.eviware.soapui.ui;
 
+import com.eviware.soapui.ColorDracula;
 import com.eviware.soapui.model.ModelItem;
 import com.eviware.soapui.model.project.Project;
 import com.eviware.soapui.model.tree.SoapUITreeModel;
@@ -98,6 +99,7 @@ public class Navigator extends JPanel {
         mainTree.setBorder(null);
         mainTree.getSelectionModel().setSelectionMode(TreeSelectionModel.DISCONTIGUOUS_TREE_SELECTION);
         mainTree.addKeyListener(new TreeKeyListener());
+        mainTree.setBackground(ColorDracula.BACKGROUND);
         JScrollPane sp = new JScrollPane(mainTree);
         sp.setBorder(BorderFactory.createEmptyBorder());
         add(sp, BorderLayout.CENTER);

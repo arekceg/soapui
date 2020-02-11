@@ -16,6 +16,7 @@
 
 package com.eviware.soapui.support;
 
+import com.eviware.soapui.ColorDracula;
 import com.eviware.soapui.SoapUI;
 import com.eviware.soapui.SwingPluginSoapUICore;
 import com.eviware.soapui.analytics.Analytics;
@@ -128,10 +129,10 @@ public class UISupport {
 
     public static final String DEFAULT_EDITOR_FONT = "Courier plain";
     public static final int DEFAULT_EDITOR_FONT_SIZE = 11;
-    public static final Color MAC_BACKGROUND_COLOR = new Color(255, 255, 255);
-    public static final Color MAC_PROGRESSBAR_BACKGROUND_COLOR = new Color(196, 196, 196);
-    public static final Color MAC_PROGRESSBAR_MATTE_BORDER_COLOR = new Color(238, 238, 238);
-    public static final Color MAC_PROGRESSBAR_LINE_BORDER_COLOR = new Color(166, 166, 166);
+    public static final Color MAC_BACKGROUND_COLOR = ColorDracula.BACKGROUND;
+    public static final Color MAC_PROGRESSBAR_BACKGROUND_COLOR = ColorDracula.BACKGROUND;
+    public static final Color MAC_PROGRESSBAR_MATTE_BORDER_COLOR = ColorDracula.LIGHT_BLUE;
+    public static final Color MAC_PROGRESSBAR_LINE_BORDER_COLOR = ColorDracula.LIGHT_BLUE;
 
     static {
         setDialogs(new ConsoleDialogs());

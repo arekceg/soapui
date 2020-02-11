@@ -16,6 +16,7 @@
 
 package com.eviware.soapui.model.tree;
 
+import com.eviware.soapui.ColorDracula;
 import com.eviware.soapui.model.ModelItem;
 import com.eviware.soapui.model.project.Project;
 import com.eviware.soapui.model.testsuite.TestCase;
@@ -77,6 +78,9 @@ public class SoapUITreeNodeRenderer extends DefaultTreeCellRenderer {
             setToolTipText(toolTipText.length() > 0 ? toolTipText : null);
         }
 
+        setForeground(ColorDracula.FOREGROUND);
+        setBackgroundSelectionColor(ColorDracula.LIGHT_BACKGROUND);
+        setBackgroundNonSelectionColor(ColorDracula.BACKGROUND);
         return this;
     }
 }
