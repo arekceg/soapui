@@ -13,7 +13,7 @@
     <background color="282a36"/>
     <caret color="ff79c6"/>
     <selection bg="44475a"/>
-    <currentLineHighlight color="44475a" fade="true"/>
+    <currentLineHighlight color="44475a" fade="false"/>
     <marginLine fg="44475a"/>
     <markAllHighlight color="44475a"/>
     <!-- TODO: Fix me -->
