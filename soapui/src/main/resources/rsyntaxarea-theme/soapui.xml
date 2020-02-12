@@ -11,7 +11,7 @@
 
     <!--  General editor colors. -->
     <background color="282a36"/>
-    <caret color="f8f8f2"/>
+    <caret color="ff79c6"/>
     <selection bg="44475a"/>
     <currentLineHighlight color="44475a" fade="true"/>
     <marginLine fg="44475a"/>
@@ -52,13 +52,13 @@
         <style token="LITERAL_STRING_DOUBLE_QUOTE" fg="DC009C"/>
         <style token="LITERAL_CHAR" fg="DC009C"/>
         <style token="LITERAL_BACKQUOTE" fg="DC009C"/>
-        <style token="MARKUP_TAG_DELIMITER" fg="ff0000"/>
+        <style token="MARKUP_TAG_DELIMITER" fg="6272a4"/>
         <style token="MARKUP_TAG_NAME" fg="bd93f9"/>
         <style token="MARKUP_TAG_ATTRIBUTE" fg="bd93f9"/>
         <style token="MARKUP_TAG_ATTRIBUTE_VALUE" fg="ff79c6"/>
         <style token="MARKUP_PROCESSING_INSTRUCTION" fg="808080"/>
         <style token="MARKUP_CDATA" fg="993333"/>
-        <style token="OPERATOR" fg="000000"/>
+								<style token="OPERATOR" fg="bd93f9"/>
         <style token="PREPROCESSOR" fg="808080"/>
         <style token="REGEX" fg="008040"/>
         <style token="SEPARATOR" fg="ff0000"/>
