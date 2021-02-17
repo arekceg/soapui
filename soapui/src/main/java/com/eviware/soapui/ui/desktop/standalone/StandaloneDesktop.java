@@ -16,6 +16,7 @@
 
 package com.eviware.soapui.ui.desktop.standalone;
 
+import com.eviware.soapui.ColorDracula;
 import com.eviware.soapui.SoapUI;
 import com.eviware.soapui.model.ModelItem;
 import com.eviware.soapui.model.PanelBuilder;
@@ -32,16 +33,7 @@ import com.eviware.soapui.ui.desktop.AbstractSoapUIDesktop;
 import com.eviware.soapui.ui.desktop.DesktopPanel;
 import com.eviware.soapui.ui.desktop.SoapUIDesktop;
 
-import javax.swing.AbstractAction;
-import javax.swing.Action;
-import javax.swing.BorderFactory;
-import javax.swing.DesktopManager;
-import javax.swing.JComponent;
-import javax.swing.JDesktopPane;
-import javax.swing.JInternalFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 import java.awt.BorderLayout;
@@ -106,6 +98,7 @@ public class StandaloneDesktop extends AbstractSoapUIDesktop {
 
         // Setting Mac-like color for all platforms pending
         desktop.setBackground(UISupport.MAC_BACKGROUND_COLOR);
+        desktop.setForeground(ColorDracula.FOREGROUND);
         enableWindowActions();
         desktop.addComponentListener(new DesktopResizeListener());
 
@@ -128,6 +121,8 @@ public class StandaloneDesktop extends AbstractSoapUIDesktop {
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
         inspector = JInspectorPanelFactory.build(scrollPane, SwingConstants.RIGHT);
         inspectorPanel = new JPanel( new BorderLayout());
+        inspectorPanel.setBackground(ColorDracula.BACKGROUND);
+        inspectorPanel.setForeground(ColorDracula.FOREGROUND);
         inspector.addInspector(new JComponentInspector<JComponent>(inspectorPanel, "Inspector",
                 "Object Inspector", true));
         inspector.setDefaultDividerLocation(0.75f);
@@ -232,7 +227,10 @@ public class StandaloneDesktop extends AbstractSoapUIDesktop {
         String title = desktopPanel.getTitle();
 
         JInternalFrame frame = new JInternalFrame(title, true, true, true, true);
+        JRootPane rootPane = frame.getRootPane();
         frame.addInternalFrameListener(internalFrameListener);
+        panel.setBackground(ColorDracula.BACKGROUND);
+        panel.setForeground(ColorDracula.FOREGROUND);
         frame.setContentPane(panel);
         frame.setLocation(xOffset * (desktop.getComponentCount() % 10), yOffset * (desktop.getComponentCount() % 10));
         Point location = frame.getLocation();
@@ -242,12 +240,16 @@ public class StandaloneDesktop extends AbstractSoapUIDesktop {
         frame.setFrameIcon(desktopPanel.getIcon());
         frame.setToolTipText(desktopPanel.getDescription());
         frame.setDefaultCloseOperation(JInternalFrame.DO_NOTHING_ON_CLOSE);
+        rootPane.setBackground(ColorDracula.BACKGROUND);
+        rootPane.setForeground(ColorDracula.FOREGROUND);
+        frame.setBackground(ColorDracula.BACKGROUND);
+        frame.setForeground(ColorDracula.FOREGROUND);
         if (!SoapUI.getSettings().getBoolean(UISettings.NATIVE_LAF)) {
             // This creates an empty frame on Mac OS X native L&F.
-            frame.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createRaisedBevelBorder(),
-                    BorderFactory.createEmptyBorder(4, 4, 4, 4)));
+            // Border around each window inside the main desktop
+            frame.setBorder(BorderFactory.createLineBorder(ColorDracula.LIGHT_BLUE,3));
         } else if (!UISupport.isMac()) {
-            frame.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
+            frame.setBorder(BorderFactory.createLineBorder(ColorDracula.LIGHT_BLUE));
         }
         return frame;
     }

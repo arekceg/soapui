@@ -16,6 +16,7 @@
 
 package com.eviware.soapui.impl;
 
+import com.eviware.soapui.ColorDracula;
 import com.eviware.soapui.support.MessageSupport;
 import com.eviware.soapui.support.components.JPropertiesTable;
 
@@ -39,6 +40,8 @@ public class WorkspaceImplPanelBuilder extends EmptyPanelBuilder<WorkspaceImpl> 
         table.addProperty(messages.get("OverviewPanel.ProjectRoot.Label"), "projectRoot",
                 new String[]{null, "${workspaceDir}"}).setDescription(
                 messages.get("OverviewPanel.ProjectRoot.Description"));
+        table.setBackground(ColorDracula.BACKGROUND);
+        table.setForeground(ColorDracula.FOREGROUND);
         return table;
     }
 

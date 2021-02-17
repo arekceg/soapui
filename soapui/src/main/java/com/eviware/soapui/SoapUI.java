@@ -734,6 +734,8 @@ public class SoapUI {
         }
 
         MonitorPanel monitorPanel = new MonitorPanel(new RuntimeMemoryMonitorSource());
+        monitorPanel.setBackground(ColorDracula.BACKGROUND);
+        monitorPanel.setForeground(ColorDracula.FOREGROUND);
         monitorPanel.start();
         inspectorLog4JMonitor.addInspector(new JComponentInspector<JComponent>(monitorPanel, "memory log",
                 "Shows runtime memory consumption", true));

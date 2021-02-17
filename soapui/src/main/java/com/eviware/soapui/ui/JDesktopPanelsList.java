@@ -16,6 +16,7 @@
 
 package com.eviware.soapui.ui;
 
+import com.eviware.soapui.ColorDracula;
 import com.eviware.soapui.ui.desktop.DesktopListener;
 import com.eviware.soapui.ui.desktop.DesktopPanel;
 import com.eviware.soapui.ui.desktop.SoapUIDesktop;
@@ -91,6 +92,7 @@ public class JDesktopPanelsList extends JPanel {
             setIcon(desktopPanel.getIcon());
 
             setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2), getBorder()));
+
 
             return this;
         }

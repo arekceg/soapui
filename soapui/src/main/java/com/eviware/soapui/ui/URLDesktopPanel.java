@@ -16,6 +16,7 @@
 
 package com.eviware.soapui.ui;
 
+import com.eviware.soapui.ColorDracula;
 import com.eviware.soapui.SoapUI;
 import com.eviware.soapui.support.StringUtils;
 import com.eviware.soapui.support.components.WebViewBasedBrowserComponent;
@@ -44,6 +45,8 @@ public class URLDesktopPanel extends DefaultDesktopPanel {
         //browser.addJavaScriptEventHandler("templateProjectCreator", new TemplateProjectCreator());
 
         panel.add(browser.getComponent(), BorderLayout.CENTER);
+        panel.setForeground(ColorDracula.FOREGROUND);
+        panel.setBackground(ColorDracula.BACKGROUND);
 
         if (StringUtils.hasContent(url)) {
             navigate(url, backupUrl, true);

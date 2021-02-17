@@ -330,7 +330,7 @@ public class UISupport {
             panel.setBorder(compound);
             panel.setBackground(MAC_PROGRESSBAR_BACKGROUND_COLOR);
         } else {
-            progressBar.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 1, Color.LIGHT_GRAY));
+            progressBar.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 1, ColorDracula.LIGHT_BLUE));
             panel.setBorder(BorderFactory.createEmptyBorder(space, space, space, space));
         }
         panel.add(progressBar, BorderLayout.CENTER);
@@ -514,7 +514,7 @@ public class UISupport {
 
     public static JPanel createTabPanel(JTabbedPane tabs, boolean addBorder) {
         GradientPanel panel = new GradientPanel(new BorderLayout());
-        panel.setForeground(Color.WHITE);
+        panel.setForeground(ColorDracula.FOREGROUND);
         if (tabs.getTabPlacement() == JTabbedPane.LEFT || tabs.getTabPlacement() == JTabbedPane.RIGHT) {
             panel.setDirection(GradientPanel.VERTICAL);
         }
@@ -523,9 +523,9 @@ public class UISupport {
 
         if (addBorder) {
             if (tabs.getTabPlacement() == JTabbedPane.TOP) {
-                panel.setBorder(BorderFactory.createMatteBorder(1, 1, 0, 0, Color.GRAY));
+                panel.setBorder(BorderFactory.createMatteBorder(1, 1, 0, 0, ColorDracula.LIGHT_BLUE));
             } else {
-                panel.setBorder(BorderFactory.createMatteBorder(0, 1, 0, 0, Color.GRAY));
+                panel.setBorder(BorderFactory.createMatteBorder(0, 1, 0, 0, ColorDracula.LIGHT_BLUE));
             }
         }
 
@@ -676,7 +676,7 @@ public class UISupport {
         toolbar.putClientProperty(Options.HEADER_STYLE_KEY, HeaderStyle.SINGLE);
         toolbar.setBorder(BorderFactory.createEmptyBorder(3, 0, 3, 0));
         toolbar.setMinimumSize(new Dimension(20, 20));
-        toolbar.setBackground(Color.WHITE);
+        toolbar.setBackground(ColorDracula.BACKGROUND);
         return toolbar;
     }
 
@@ -688,7 +688,7 @@ public class UISupport {
         toolbar.putClientProperty(Options.HEADER_STYLE_KEY, HeaderStyle.SINGLE);
         toolbar.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
         toolbar.setMinimumSize(new Dimension(20, 20));
-        toolbar.setBackground(Color.WHITE);
+        toolbar.setBackground(ColorDracula.BACKGROUND);
         return toolbar;
     }
 

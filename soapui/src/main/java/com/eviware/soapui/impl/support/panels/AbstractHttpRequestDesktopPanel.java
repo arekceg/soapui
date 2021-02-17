@@ -16,6 +16,7 @@
 
 package com.eviware.soapui.impl.support.panels;
 
+import com.eviware.soapui.ColorDracula;
 import com.eviware.soapui.SoapUI;
 import com.eviware.soapui.config.CredentialsConfig;
 import com.eviware.soapui.impl.support.AbstractHttpRequest;
@@ -122,7 +123,6 @@ public abstract class AbstractHttpRequestDesktopPanel<T extends ModelItem, T2 ex
 
     public AbstractHttpRequestDesktopPanel(T modelItem, T2 request) {
         super(modelItem);
-
         this.request = request;
 
         init(request);
