@@ -61,9 +61,13 @@ public class EndpointExplorerCallback {
     private static final String PAYLOAD_PROPERTY = "payload";
     private static final String HEADERS_PROPERTY = "headers";
     private static final String UNKNOWN_HOST_EXCEPTION_RESPONSE_TEXT = "<missing raw response data>";
+    private final WebViewBasedBrowserComponent browserComponent;
 
-    private static final String UNKNOWN_HOST_EXCEPTION_RESPONSE_TEXT = "<missing raw response data>";
+    private boolean requestCreated = false;
 
+    public EndpointExplorerCallback(WebViewBasedBrowserComponent browserComponent){
+        this.browserComponent = browserComponent;
+    }
     public RestURIParser getUrlParser(String url) {
         if (StringUtils.hasContent(url)) {
             try {
